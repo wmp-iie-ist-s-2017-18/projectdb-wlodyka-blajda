@@ -1,6 +1,7 @@
 package blajda.andzelika.app.movies.dao;
 
 import blajda.andzelika.app.movies.model.Category;
+import java.sql.PreparedStatement;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -47,6 +48,7 @@ public class CategoryDao {
     public List<Category> getAll(){
         Session session = factory.openSession();
         Query query = session.createQuery("from Category");
+        
         List list = query.getResultList();
         if (list != null) {
             return list;

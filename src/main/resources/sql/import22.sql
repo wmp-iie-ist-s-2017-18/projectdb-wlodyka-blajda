@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Czas generowania: 20 Maj 2019, 04:50
+-- Czas generowania: 12 Maj 2019, 17:55
 -- Wersja serwera: 5.7.19
 -- Wersja PHP: 5.6.31
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(255) NOT NULL,
   `for_adults` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `category`
@@ -45,9 +45,7 @@ INSERT INTO `category` (`id`, `name`, `for_adults`) VALUES
 (2, 'Komedia', 0),
 (3, 'Scifi', 0),
 (4, 'Film animowany', 0),
-(5, 'Dramat', 1),
-(6, 'Wojtkowa', 1),
-(7, 'dfgdfgd', 1);
+(5, 'Dramat', 1);
 
 -- --------------------------------------------------------
 
@@ -62,26 +60,22 @@ CREATE TABLE IF NOT EXISTS `movie` (
   `release_date` date NOT NULL,
   `language` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `id_movie` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `movie`
 --
 
-INSERT INTO `movie` (`id`, `title`, `release_date`, `language`, `category_id`, `id_movie`) VALUES
-(1, 'Alien', '2012-05-20', 'Angielski', 1, NULL),
-(2, 'The Conjuring', '2012-05-20', 'Angielski', 1, NULL),
-(3, 'Alien', '2012-05-20', 'Angielski', 1, NULL),
-(4, 'The Conjuring', '2012-05-20', 'Angielski', 1, NULL),
-(5, 'Chlopaki nie placza ', '2012-05-20', 'Polski', 2, NULL),
-(6, 'Avengers: Infinity War', '2012-05-20', 'Angielski', 3, NULL),
-(7, 'Dragon ball Z', '2012-05-20', 'Japonski', 4, NULL),
-(8, 'Wojtek', '2014-04-11', 'Polski', 1, NULL),
-(9, 'Wojtkowa', '2012-12-22', 'Angielski', 6, NULL),
-(10, 'Title', '2010-12-13', 'Language', 1, NULL);
+INSERT INTO `movie` (`id`, `title`, `release_date`, `language`, `category_id`) VALUES
+(1, 'Alien', '2012-05-20', 'Angielski', 1),
+(2, 'The Conjuring', '2012-05-20', 'Angielski', 1),
+(3, 'Alien', '2012-05-20', 'Angielski', 1),
+(4, 'The Conjuring', '2012-05-20', 'Angielski', 1),
+(5, 'Chlopaki nie placza ', '2012-05-20', 'Polski', 2),
+(6, 'Avengers: Infinity War', '2012-05-20', 'Angielski', 3),
+(7, 'Dragon ball Z', '2012-05-20', 'Japonski', 4);
 
 -- --------------------------------------------------------
 
@@ -95,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(255) NOT NULL,
   `haslo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `users`
@@ -103,22 +97,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `login`, `haslo`) VALUES
 (1, 'adam', 'qwerty');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `watched`
---
-
-DROP TABLE IF EXISTS `watched`;
-CREATE TABLE IF NOT EXISTS `watched` (
-  `id_movie` int(11) NOT NULL,
-  `movie` varchar(255) NOT NULL,
-  `raiting` int(100) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `watched` tinyint(4) NOT NULL,
-  KEY `id` (`id_movie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -128,14 +106,7 @@ CREATE TABLE IF NOT EXISTS `watched` (
 -- Ograniczenia dla tabeli `movie`
 --
 ALTER TABLE `movie`
-  ADD CONSTRAINT `FKaork482evmtbc7xj2wrt0it2v` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
-
---
--- Ograniczenia dla tabeli `watched`
---
-ALTER TABLE `watched`
-  ADD CONSTRAINT `watched_ibfk_1` FOREIGN KEY (`id_movie`) REFERENCES `movie` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

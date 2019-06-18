@@ -2,6 +2,7 @@ package blajda.andzelika.app.movies.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "MOVIE")
@@ -22,6 +23,10 @@ public class Movie {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    
+    @OneToMany(mappedBy = "wmovie", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Watched> movies;
+    
 
     public Long getId() {
         return id;

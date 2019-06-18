@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(255) NOT NULL,
   `haslo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `users`

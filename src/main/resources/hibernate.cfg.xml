@@ -4,6 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
  
    <hibernate-configuration>
+       
      <session-factory>
         <!-- Podstawowe ustawienia bazy danych używając JDBC które zrobiliśmy na zajęciach -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -14,15 +15,20 @@
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        
 
-         <property name="hibernate.hbm2ddl.auto">update</property> 
-        <property name="hibernate.hbm2ddl.import_files">sql/import.sql</property> 
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> 
+        <property name="hibernate.hbm2ddl.import_files">sql/import.sql</property>  -->
 
         <mapping class="blajda.andzelika.app.movies.model.Movie"/>
         <mapping class="blajda.andzelika.app.movies.model.Category"/>
+        <mapping class="blajda.andzelika.app.movies.model.Watched"/>
     </session-factory>
+    
 
 </hibernate-configuration>
+
 
 
  <!-- <session-factory>
